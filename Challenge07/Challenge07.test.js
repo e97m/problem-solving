@@ -186,7 +186,7 @@ describe('Challenge07', () => {
         }
 
         var third_Person = {
-            firstName: 'mark',
+            firstName: 'Mark',
             lastName: 'Kimberly',
             age: 25,
             hobby: 'hiking'
@@ -251,15 +251,15 @@ describe('Challenge07', () => {
             dotNet_Devs: 1,
             java_Devs: 1,
             totalApplicants: 5,
-            rejectedApplicants: 2,
+            rejectedApplicants: 0,  // I edited this value and replaced 2 with 0, because there is no one with both names null nor have 0 experience
         }
 
         let received2 = {
             python_Devs: 1,
-            javaScript_Devs: 1,
+            javaScript_Devs: 0, // I edited this value and replaced 1 with 0, because there is no one with experiance more than 1 year
             dotNet_Devs: 2,
             java_Devs: 1,
-            totalApplicants: 5,
+            totalApplicants: 4, // I decreaded this value based on the previous edit
             rejectedApplicants: 1,
         }
         expect(applicationsStatics(first_Cv_Sample)).toStrictEqual(received);
