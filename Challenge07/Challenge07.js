@@ -19,10 +19,9 @@
 // ------------------------
 
 const objLat = (_obj) => { 
-    console.log(`My name is ${_obj.firstName} ${_obj.lastName} I am ${_obj.age} YO, and I love ${_obj.hobby}.`)
+    return `my name is ${_obj.firstName} ${_obj.lastName} I am ${_obj.age} YO, and I love ${_obj.hobby}.`
 };
 
-objLat(obj)
 
 // 2) ---------------------
 //
@@ -85,9 +84,29 @@ objLat(obj)
 
 // ------------------------
 const cvFormatter = (arr) => {
-    
-    // write your code here
+    let finalArr =[]
+    for (let i=0; i<arr.length;i++){
+        if (arr[i].yearsOfExperience > 1){
+            finalArr.push(reformat(arr[i]))
+        }
+    }
+    return finalArr
 };
+
+function reformat(obj){
+    let name 
+    if (obj.firstName === null){
+        name = obj.lastName
+    }else if (obj.lastName === null){
+        name = obj.firstName
+    } else {name = `${obj.firstName} ${obj.lastName}`}
+
+    let newObj = {
+        fullName : name,
+        tech : obj.tech
+    }
+    return newObj
+}
 
 // 3) ---------------------
 //
@@ -110,7 +129,33 @@ const cvFormatter = (arr) => {
 
 // ------------------------
 const applicationsStatics = (arr) => {
-    // write your code here
+    let python=0, JS=0, dotNet=0, java=0
+    let total=0, rejected=0
+    for (let i=0; i<arr.length; i++){
+        if (arr[i].yearsOfExperience < 1 || (arr[i].firstName===null && arr[i].lastName ===null)){
+            rejected++}
+            else{
+            total++
+            switch (arr[i].tech) {
+                case "Python": python++; break;
+                case "JS": JS++; break;
+                case ".Net": dotNet++; break;
+                case "Java": java++; break;
+            }
+        }
+    }
+
+    let finalObj = {
+        python_Devs: python,
+        javaScript_Devs: JS,
+        dotNet_Devs: dotNet,
+        java_Devs: java,
+        rejectedApplicants: rejected,
+        totalApplicants: total
+        
+    }
+
+    return  finalObj
 };
 
 // 4) ---------------------
@@ -235,7 +280,23 @@ let data = {
 //  2- You need to round the average to the nearest lower number 
 
 const classesAvg = (data) => {
-    // write your code here
+    let sum=0 , newAvg =0
+    for (let i=0; i<(data.grades.length);i++){
+        for(let j=0; j<(data.grades[i].classes.length); j++){
+            for(let k=0; k<(data.grades[i].classes[j].classScores.length); k++){
+                sum = sum + data.grades[i].classes[j].classScores[k]
+            }
+            newAvg = Math.floor(sum / (data.grades[i].classes[j].classScores.length))
+            data.grades[i].classes[j].avg = newAvg
+            sum=0
+        }
+        
+    }
+    sum=0
+    return data
 };
+
+
+
 
 module.exports = { objLat, cvFormatter, applicationsStatics, classesAvg };
