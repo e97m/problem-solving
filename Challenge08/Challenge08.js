@@ -29,6 +29,11 @@
 
 const customerAndAge = (obj) => {
   // write your code here
+  for (const property in obj) {
+    let arr = []
+    arr.push(`Customer Name :${property} , Age :${obj[property]}`)
+    return arr
+  }
 };
 
 // -------------------------------------------------------------------------------------------------------
@@ -56,6 +61,11 @@ const customerAndAge = (obj) => {
 
 const getEntries = (obj) => {
   // write your code here
+  let arr =[]
+  for (const [key, value] of Object.entries(obj)) {
+    arr.push(`${key}: ${value}`)
+  } 
+  return arr
 };
 
 // -------------------------------------------------------------------------------------------------------
@@ -97,7 +107,16 @@ const getInfo = (arr) => {
   let coursesName = [];
   let studentsName = [];
   // write your code here
-
+  arr.forEach(element => {
+    for (const [key, value] of Object.entries(element)) {
+      if (`${key}` == 'course') {
+        coursesName.push(`${value}`)
+      }
+      if (`${key}` == 'Students') {
+        studentsName.push(`${value}`)
+      }
+    } 
+  });
   return { coursesName, studentsName };
 };
 
@@ -121,7 +140,14 @@ const getInfo = (arr) => {
 
 const getStudents = (arr) => {
   // write your code here
-
+  let newArr =[]
+  arr.forEach(element => {
+    obj = {Student: element,
+      course: `his course name`   // I don't know where shoud I get the data from!!
+    }
+    newArr.push(obj)
+  });
+  return newArr
 };
 
 module.exports = {
