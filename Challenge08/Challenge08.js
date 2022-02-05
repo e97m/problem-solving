@@ -141,11 +141,16 @@ const getInfo = (arr) => {
 const getStudents = (arr) => {
   // write your code here
   let newArr =[]
-  arr.forEach(element => {
-    obj = {Student: element,
-      course: `his course name`   // I don't know where shoud I get the data from!!
-    }
-    newArr.push(obj)
+  arr.forEach(name => {
+    courses.forEach(obj => {
+
+        if (obj.Students.includes(name)){
+          let newObj = {Student: name,
+            course: obj.course
+          }
+          newArr.push(newObj)
+      }
+    })
   });
   return newArr
 };
