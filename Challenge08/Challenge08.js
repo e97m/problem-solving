@@ -113,7 +113,10 @@ const getInfo = (arr) => {
         coursesName.push(`${value}`)
       }
       if (`${key}` == 'Students') {
-        studentsName.push(`${value}`)
+        for (let i=0 ; i<value.length; i++){
+          studentsName.push(`${value[i]}`)
+        }
+        
       }
     } 
   });
